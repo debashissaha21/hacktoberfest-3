@@ -1,0 +1,52 @@
+# Python3 implementation of the approach
+
+# Node of a linked list
+class Node:
+	def __init__(self, data = None, next = None):
+		self.next = next
+		self.data = data
+
+head = None
+
+# Function to insert a node at the beginning
+def insert(ref_head, item):
+	global head
+	temp = Node()
+	temp.data = item
+	temp.next = ref_head
+	head = temp
+	
+# Function to count the number of
+# duplicate nodes in the linked list
+def countNode(head):
+
+	if (head == None):
+		return 0
+
+	# Create a hash table insert head
+	s = set()
+	s.add(head.data)
+
+	# Traverse through remaining nodes
+	count = 0
+	curr = head.next
+	while ( curr != None ) :
+		if (curr.data in s):
+			count = count + 1
+
+		s.add(curr.data)
+		curr = curr.next
+
+	# Return the count of duplicate nodes
+	return count
+
+# Driver code
+insert(head, 5)
+insert(head, 7)
+insert(head, 5)
+insert(head, 1)
+insert(head, 7)
+
+print(countNode(head))
+
+# This code is contributed by Arnab Kundu
